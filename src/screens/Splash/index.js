@@ -1,4 +1,5 @@
 import React from 'react';
+import hexToRgba from 'hex-to-rgba';
 import { COLOR, SIZE } from '../../utils';
 import { Logo, SplashBg } from '../../assets';
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     width: SIZE.width,
     height: SIZE.height,
     position: 'absolute',
-    backgroundColor: 'rgba(29, 35, 53, 0.37)', //'#1D2335' / COLOR.whiteCream
+    backgroundColor: hexToRgba('#1D2335', '0.37')
   },
   logo : {
     width: 120,
