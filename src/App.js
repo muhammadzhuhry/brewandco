@@ -24,9 +24,8 @@ const Splash = () => {
   return (
       <ImageBackground source={SplashBg} style={styles.container}>
         <View style={styles.overlay} />
-        <View style={styles.item}>
-          <Image source={Logo} style={styles.logo} />
-        </View>
+        <Image source={Logo} style={styles.logo} />
+        <Text style={styles.quote}>Ordinary Coffee House</Text>
       </ImageBackground>
   )
 }
@@ -66,5 +65,11 @@ const styles = StyleSheet.create({
   logo : {
     width: 120,
     height: 130
+  },
+  quote: {
+    marginTop: 25,
+    color: '#FFFAF6', 
+    fontSize: 24,
+    fontFamily: 'Poppins-Regular'
   }
 })
