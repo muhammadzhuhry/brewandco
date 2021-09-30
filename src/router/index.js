@@ -8,7 +8,7 @@ const Router = () => {
   return (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}} />
-      <Stack.Screen name="Onboarding" component={Onboarding} options={{headerShown: false}}  />
+      <Stack.Screen name="Onboarding" component={Onboarding} options={{headerShown: false}} />
       <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Stack.Screen name="Promo" component={Promo} options={{headerShown: false}} />
     </Stack.Navigator>
