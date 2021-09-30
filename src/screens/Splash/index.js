@@ -1,5 +1,5 @@
 import React from 'react';
-import { SIZE } from '../../utils';
+import { COLOR, SIZE } from '../../utils';
 import { Logo, SplashBg } from '../../assets';
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 
@@ -29,11 +29,12 @@ const styles = StyleSheet.create({
   },
   logo : {
     width: 120,
-    height: 130
+    height: 130,
+    marginTop: -100
   },
   quote: {
     marginTop: 25,
-    color: '#FFFAF6', 
+    color: COLOR.whiteCream, 
     fontSize: 24,
     fontFamily: 'Poppins-Regular'
   }
