@@ -1,6 +1,6 @@
 import React from 'react';
-import { SplashBg } from './assets';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Logo, SplashBg } from './assets';
+import { Dimensions, Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -24,6 +24,9 @@ const Splash = () => {
   return (
       <ImageBackground source={SplashBg} style={styles.container}>
         <View style={styles.overlay} />
+        <View style={styles.item}>
+          <Image source={Logo} style={styles.logo} />
+        </View>
       </ImageBackground>
   )
 }
@@ -44,12 +47,24 @@ const App = () => {
 
 export default App
 
+const windowWidht = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+    
   },
   overlay: {
-    flex: 1,
+    width: windowWidht,
+    height: windowHeight,
+    position: 'absolute',
     backgroundColor: 'rgba(29, 35, 53, 0.37)', //'#1D2335'
+  },
+  logo : {
+    width: 120,
+    height: 130
   }
 })
