@@ -1,6 +1,7 @@
 import React from 'react';
+import { SIZE } from './utils';
 import { Logo, SplashBg } from './assets';
-import { Dimensions, Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -46,21 +47,17 @@ const App = () => {
 
 export default App
 
-const windowWidht = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-    
   },
   overlay: {
-    width: windowWidht,
-    height: windowHeight,
+    width: SIZE.width,
+    height: SIZE.height,
     position: 'absolute',
-    backgroundColor: 'rgba(29, 35, 53, 0.37)', //'#1D2335'
+    backgroundColor: 'rgba(29, 35, 53, 0.37)', //'#1D2335' / COLOR.whiteCream
   },
   logo : {
     width: 120,
