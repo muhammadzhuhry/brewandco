@@ -1,3 +1,4 @@
 import ButtonIcon from './ButtonIcon';
+import VerticalLine from './VerticalLine';
 
-export { ButtonIcon };
+export { ButtonIcon, VerticalLine };
