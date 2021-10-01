@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import { IconArrowRight } from '../../assets'
 import { COLOR } from '../../utils'
 
-const ButtonIcon = ({ width, height, bradius, color, iconName }) => {
+const ButtonIcon = ({ width, height, bradius, color, iconName, onPress }) => {
   const Icon = () => {
     if (iconName == 'arrow-right') return <IconArrowRight />
 
@@ -11,7 +11,7 @@ const ButtonIcon = ({ width, height, bradius, color, iconName }) => {
   }
   
   return (
-    <TouchableOpacity style={styles.button(width, height, bradius, color)}> 
+    <TouchableOpacity onPress={onPress} style={styles.button(width, height, bradius, color)}> 
       <Icon />      
     </TouchableOpacity>
   )
