@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft, IconLock, IconMessage, IconShow } from '../../assets'
 import { VerticalLine } from '../../components'
 import { COLOR } from '../../utils'
@@ -14,17 +14,22 @@ const Login = () => {
           <Text style={styles.message}>Welcome back</Text>
         </View>
       </View>
-      <View style={styles.emailSection} >
-        <IconMessage style={styles.emailIcon} />
-        <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
-        <TextInput style={styles.emailInput} placeholder="Email address" />
+      <View style={styles.wrapperInput}>
+        <View style={styles.emailSection} >
+          <IconMessage style={styles.emailIcon} />
+          <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
+          <TextInput style={styles.emailInput} placeholder="Email address" />
+        </View>
+        <View style={styles.passwordSection}>
+          <IconLock style={styles.passwordIcon} />
+          <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
+          <TextInput style={styles.passwordInput} placeholder="Password" />
+          <IconShow />
+        </View>
       </View>
-      <View style={styles.passwordSection}>
-        <IconLock style={styles.passwordIcon} />
-        <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
-        <TextInput style={styles.passwordInput} placeholder="Password" />
-        <IconShow />
-      </View>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -51,6 +56,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     color: COLOR.grayBrown
   },
+  wrapperInput: {
+    marginBottom: 30
+  },
   emailSection: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -70,13 +78,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: COLOR.grayBlue,
-    marginBottom: 20
+    borderColor: COLOR.grayBlue
   },
   passwordIcon: {
     marginRight: 10
   },
   passwordInput: {
     flex: 1
+  },
+  button: {
+    borderRadius: 100,
+    paddingVertical: 12,
+    backgroundColor: COLOR.midnightBlue,
+    marginBottom: 20
+  },
+  buttonText: {
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Poppins-SemiBold',
+    color: COLOR.white
   }
 })
