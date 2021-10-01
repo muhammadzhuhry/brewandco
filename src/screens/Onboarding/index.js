@@ -1,6 +1,7 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { OnboardingImg, IconArrowRight } from '../../assets'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { OnboardingImg } from '../../assets'
+import { ButtonIcon } from '../../components'
 import { COLOR, SIZE } from '../../utils'
 
 const Onboarding = () => {
@@ -13,11 +14,8 @@ const Onboarding = () => {
           <Text style={styles.tagline}>{`The best grain, the finest roast, the \nmost powerful flavor.`}</Text>
         </View>
       </View>
-      {/* build in Button cannot be customized */}
       <View style={styles.wrapperButton}>
-        <TouchableOpacity style={styles.button}> 
-          <IconArrowRight />
-        </TouchableOpacity>
+        <ButtonIcon iconName="arrow-right" width={65} height={65} bradius={100} color={COLOR.midnightBlue} />
       </View>
     </View>
   )
@@ -58,14 +56,6 @@ const styles = StyleSheet.create({
   wrapperButton: {
     marginTop: 50,
     alignItems: 'flex-end',
-  },
-  button: {
-    width: 65,
-    height: 65,
-    borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginRight: SIZE.width * 0.12, // hardcode 50px
-    backgroundColor: COLOR.midnightBlue
   }
 })
