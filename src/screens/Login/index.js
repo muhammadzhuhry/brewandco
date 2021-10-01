@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft, IconLock, IconMessage, IconShow } from '../../assets'
 import { VerticalLine } from '../../components'
-import { COLOR } from '../../utils'
+import { COLOR, SIZE } from '../../utils'
 
 const Login = () => {
   return (
@@ -23,13 +23,19 @@ const Login = () => {
         <View style={styles.passwordSection}>
           <IconLock style={styles.passwordIcon} />
           <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
-          <TextInput style={styles.passwordInput} placeholder="Password" />
+          <TextInput style={styles.passwordInput} placeholder="Password" secureTextEntry={true} />
           <IconShow />
         </View>
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.textForgot}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <View style={styles.wrapperSignup}>
+        <Text style={styles.textSignup}>New member? <Text style={styles.textSignupHighlight}>Sign up</Text></Text>
+      </View>
     </View>
   )
 }
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   emailInput: {
-    flex: 1,
+    flex: 1
   },
   passwordSection: {
     flexDirection: 'row',
@@ -97,5 +103,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Poppins-SemiBold',
     color: COLOR.white
+  },
+  textForgot: {
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Poppins-Medium',
+    color: COLOR.midnightBlue,
+    textDecorationLine: 'underline'
+  },
+  wrapperSignup: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: SIZE.height * 0.05
+  },
+  textSignup: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
+    color: COLOR.grayBrown,
+  },
+  textSignupHighlight: {
+    fontFamily: 'Poppins-Medium',
+    color: COLOR.midnightBlue,
   }
 })
