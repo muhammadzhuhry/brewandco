@@ -1,10 +1,14 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { OnboardingImg } from '../../assets'
 import { ButtonIcon } from '../../components'
 import { COLOR, SIZE } from '../../utils'
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
+  const handleClick = () => {
+    navigation.navigate('Login')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
@@ -14,9 +18,9 @@ const Onboarding = () => {
           <Text style={styles.tagline}>{`The best grain, the finest roast, the \nmost powerful flavor.`}</Text>
         </View>
       </View>
-      <View style={styles.wrapperButton}>
-        <ButtonIcon iconName="arrow-right" width={65} height={65} bradius={100} color={COLOR.midnightBlue} />
-      </View>
+      <TouchableOpacity style={styles.wrapperButton}>
+        <ButtonIcon iconName="arrow-right" width={65} height={65} bradius={100} color={COLOR.midnightBlue} onPress={handleClick} />
+      </TouchableOpacity>
     </View>
   )
 }
