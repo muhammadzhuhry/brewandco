@@ -19,7 +19,7 @@ const Onboarding = ({ navigation }) => {
         </View>
       </View>
       <TouchableOpacity style={styles.wrapperButton}>
-        <ButtonIcon iconName="arrow-right" width={65} height={65} bradius={100} color={COLOR.midnightBlue} onPress={handleClick} />
+        <ButtonIcon iconName="arrow-right" width={65} height={65} bRadius={100} color={COLOR.midnightBlue} onPress={handleClick} />
       </TouchableOpacity>
     </View>
   )
