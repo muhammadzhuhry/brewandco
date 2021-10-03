@@ -16,7 +16,12 @@ const Login = ({ navigation }) => {
   const passwordFix = 'd3mo@@@'
   const loginHandler = () => {
     if (email === emailFix && password === passwordFix) {
-      return Alert.alert('success', 'silahkan tunggu')
+      return Alert.alert('success', 'silahkan tunggu', [
+        { 
+          text: 'OK',
+          onPress: () => navigation.replace('Home')
+        }
+      ])
     }
     return Alert.alert('error', 'email atau password tidak sesuai')
   }

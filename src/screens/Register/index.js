@@ -15,7 +15,12 @@ const Register = ({ navigation }) => {
 
   const registerHandler = () => {
     if (email && phone && password) {
-      return Alert.alert('success', 'silahkan tunggu')
+      return Alert.alert('success', 'silahkan tunggu', [
+        { 
+          text: 'OK',
+          onPress: () => navigation.replace('Login')
+        }
+      ])
     }
     return Alert.alert('error', 'data tidak boloh kosong')
   }
