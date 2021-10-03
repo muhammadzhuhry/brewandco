@@ -1,13 +1,35 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { IconArrowLeft, IconLock, IconMessage, IconShow } from '../../assets'
-import { VerticalLine } from '../../components'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { IconArrowLeft } from '../../assets'
+import { Button, TextField, PasswordField } from '../../components'
 import { COLOR, SIZE } from '../../utils'
 
-const Login = () => {
+const Login = ({ navigation }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const clickBackHandler = () => {
+    navigation.goBack()
+  }
+
+  const emailFix = 'demo@gmail.com';
+  const passwordFix = 'd3mo@@@'
+  const loginHandler = () => {
+    if (email === emailFix && password === passwordFix) {
+      return Alert.alert('success', 'silahkan tunggu')
+    }
+    return Alert.alert('error', 'email atau password tidak sesuai')
+  }
+
+  const registerHandler = () => {
+    navigation.navigate('Register')
+  }
+  
   return (
     <View style={styles.container}>
-      <IconArrowLeft />
+      <TouchableOpacity onPress={clickBackHandler}>
+        <IconArrowLeft />
+      </TouchableOpacity>
       <View style={styles.wrapperHeader}>
         <View style={styles.text}>
           <Text style={styles.title}>Sign in</Text>
@@ -15,26 +37,34 @@ const Login = () => {
         </View>
       </View>
       <View style={styles.wrapperInput}>
-        <View style={styles.emailSection} >
-          <IconMessage style={styles.emailIcon} />
-          <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
-          <TextInput style={styles.emailInput} placeholder="Email address" />
-        </View>
-        <View style={styles.passwordSection}>
-          <IconLock style={styles.passwordIcon} />
-          <VerticalLine width={1} height="60%" marginRight={5} color={COLOR.grayBlue} />
-          <TextInput style={styles.passwordInput} placeholder="Password" secureTextEntry={true} />
-          <IconShow />
-        </View>
+        <TextField
+          iconName="message"
+          placeholder="Email address"
+          value={email} 
+          onChangeText={email => setEmail(email)}
+        />
+        <PasswordField
+          placeholder="Password"
+          value={password} 
+          onChangeText={password => setPassword(password)}
+        />
       </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <Button 
+        color={COLOR.midnightBlue} 
+        bRadius={100} 
+        pVertical={12} 
+        mBottom={20} 
+        text="Login"
+        onPress={loginHandler}
+      />
       <TouchableOpacity>
         <Text style={styles.textForgot}>Forgot Password?</Text>
       </TouchableOpacity>
-      <View style={styles.wrapperSignup}>
-        <Text style={styles.textSignup}>New member? <Text style={styles.textSignupHighlight}>Sign up</Text></Text>
+      <View style={styles.wrapperRegister}>
+        <Text style={styles.textRegister}>New member? </Text>
+        <TouchableOpacity onPress={registerHandler}>
+          <Text style={styles.register}>Sign up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -65,45 +95,6 @@ const styles = StyleSheet.create({
   wrapperInput: {
     marginBottom: 30
   },
-  emailSection: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: COLOR.grayBlue,
-    marginBottom: 20
-  },
-  emailIcon: {
-    marginRight: 10
-  },
-  emailInput: {
-    flex: 1
-  },
-  passwordSection: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: COLOR.grayBlue
-  },
-  passwordIcon: {
-    marginRight: 10
-  },
-  passwordInput: {
-    flex: 1
-  },
-  button: {
-    borderRadius: 100,
-    paddingVertical: 12,
-    backgroundColor: COLOR.midnightBlue,
-    marginBottom: 20
-  },
-  buttonText: {
-    fontSize: 14,
-    textAlign: 'center',
-    fontFamily: 'Poppins-SemiBold',
-    color: COLOR.white
-  },
   textForgot: {
     fontSize: 14,
     textAlign: 'center',
@@ -111,17 +102,20 @@ const styles = StyleSheet.create({
     color: COLOR.midnightBlue,
     textDecorationLine: 'underline'
   },
-  wrapperSignup: {
+  wrapperRegister: {
     flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: SIZE.height * 0.05
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    marginBottom: SIZE.height * 0.05,
   },
-  textSignup: {
+  textRegister: {
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
     color: COLOR.grayBrown,
   },
-  textSignupHighlight: {
+  register: {
+    fontSize: 14,
     fontFamily: 'Poppins-Medium',
     color: COLOR.midnightBlue,
   }
