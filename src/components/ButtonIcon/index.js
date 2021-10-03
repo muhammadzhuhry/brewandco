@@ -5,8 +5,13 @@ import { COLOR } from '../../utils'
 
 const ButtonIcon = ({ width, height, bRadius, color, iconName, onPress }) => {
   const Icon = () => {
-    if (iconName == 'arrow-right') return <IconArrowRight />
+    switch (iconName) {
+      case 'arrow-right':
+        return <IconArrowRight />
 
+      default: 
+        return null
+    }
     return null;
   }
   
