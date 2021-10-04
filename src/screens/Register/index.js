@@ -35,10 +35,8 @@ const Register = ({ navigation }) => {
         <IconArrowLeft />
       </TouchableOpacity>
       <View style={styles.wrapperHeader}>
-        <View style={styles.text}>
-          <Text style={styles.title}>Sign up</Text>
-          <Text style={styles.message}>Create an account here</Text>
-        </View>
+        <Text style={styles.title}>Sign up</Text>
+        <Text style={styles.message}>Create an account here</Text>
       </View>
       <View style={styles.wrapperInput}>
         <TextField
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 40
   },
-  text: {
+  wrapperHeader: {
     marginVertical: 30
   },
   title: {
