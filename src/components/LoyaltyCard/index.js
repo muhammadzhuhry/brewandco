@@ -10,11 +10,11 @@ const LoyaltyCard = ({ ordered }) => {
   let itemCoffee = []
 
   for (let i = 0; i < ordered; i++) {
-    itemCoffee.push(<IconCoffeeActive/>);
+    itemCoffee.push(<IconCoffeeActive key={i}/>);
   }
 
   for (let j = 0; j < maxOrder - ordered; j++) {
-    itemCoffee.push(<IconCoffee/>);
+    itemCoffee.push(<IconCoffee key={j+ordered}/>);
   }
 
 
@@ -22,7 +22,7 @@ const LoyaltyCard = ({ ordered }) => {
     <View style={styles.loyaltyCard}>
       <View style={styles.loyaltyText}>
         <Text style={styles.text}>Loyalty card</Text>
-        <Text style={styles.text}>4 / 8</Text>
+        <Text style={styles.text}>{ordered} / {maxOrder}</Text>
       </View>
       <View style={styles.loyaltyItem}>
         { itemCoffee }
