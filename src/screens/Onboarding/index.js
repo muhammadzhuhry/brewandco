@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.white
   },
   wrapperHeader: {
-    marginTop: SIZE.height * 0.09, // hardcode 60px
+    marginVertical: SIZE.height * 0.09, // hardcode 60px
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   wrapperButton: {
-    marginTop: 50,
     alignItems: 'flex-end',
     marginRight: SIZE.width * 0.12, // hardcode 50px
   }
