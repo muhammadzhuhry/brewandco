@@ -1,35 +1,34 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { IconCart, IconCoffee, IconCoffeeActive } from '../../assets';
-import { COLOR, SIZE } from '../../utils';
+import { IconCart } from '../../assets';
+import { LoyaltyCard, MenuItem } from '../../components';
+import { COLOR } from '../../utils';
 
 const Home = () => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.wrapperHeader}>
-        <View>
-          <Text style={styles.greeting}>Good morning</Text>
-          <Text style={styles.name}>Anderson</Text>
+    <ScrollView style={{ backgroundColor: COLOR.midnightBlue }}>
+      <View style={styles.container}>
+        <View style={styles.wrapperHeader}>
+          <View>
+            <Text style={styles.greeting}>Good morning</Text>
+            <Text style={styles.name}>Anderson</Text>
+          </View>
+          <TouchableOpacity>
+            <IconCart />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <IconCart />
-        </TouchableOpacity>
+        <LoyaltyCard ordered={6} />
       </View>
-      <View style={styles.loyaltyCard}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5 }}>
-          <Text style={styles.loyaltyText}>Loyalty card</Text>
-          <Text style={styles.loyaltyText}>4 / 8</Text>
+      <View style={{ backgroundColor: COLOR.white }}>
+      <View style={styles.containerMenu}>
+        <Text style={styles.menuTitle}>Choose your coffee</Text>
+        <View style={styles.itemBox}>
+          <MenuItem name="Americano" />
+          <MenuItem name="Cappucino" />
+          <MenuItem name="Mocha" />
+          <MenuItem name="Flat White" />
         </View>
-        <View style={styles.loyaltyItem}>
-          <IconCoffeeActive />
-          <IconCoffeeActive />
-          <IconCoffeeActive />
-          <IconCoffeeActive />
-          <IconCoffee />
-          <IconCoffee />
-          <IconCoffee />
-          <IconCoffee />
-        </View>
+      </View>
       </View>
     </ScrollView>
   )
@@ -39,10 +38,9 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: COLOR.white,
     paddingVertical: 30,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    backgroundColor: COLOR.white
   }, 
   wrapperHeader: {
     marginBottom: 15,
@@ -60,23 +58,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     color: COLOR.midnightBlack
   },
-  loyaltyCard: {
-    paddingVertical: 14,
-    paddingHorizontal: 25,
-    borderRadius: 12, 
-    backgroundColor: COLOR.midnightBlue
+  containerMenu: {
+    backgroundColor: COLOR.midnightBlue,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingVertical: 25,
+    paddingHorizontal: 30
   },
-  loyaltyText: {
-    fontSize: 14,
+  menuTitle: {
+    fontSize: 16,
     fontFamily: 'Poppins-Medium',
     color: COLOR.whiteGray
   },
-  loyaltyItem: {
-    padding: 14,
-    marginTop: 5,
-    borderRadius: 12,
+  itemBox: {
+    flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: COLOR.white
+    justifyContent: 'space-between'
   }
 })
