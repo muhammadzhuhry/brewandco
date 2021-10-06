@@ -15,15 +15,16 @@ const Login = ({ navigation }) => {
   const emailFix = 'demo@gmail.com';
   const passwordFix = 'd3mo@@@'
   const loginHandler = () => {
-    if (email === emailFix && password === passwordFix) {
-      return Alert.alert('success', 'silahkan tunggu', [
-        { 
-          text: 'OK',
-          onPress: () => navigation.replace('Home')
-        }
-      ])
-    }
-    return Alert.alert('error', 'email atau password tidak sesuai')
+    // if (email === emailFix && password === passwordFix) {
+    //   return Alert.alert('success', 'silahkan tunggu', [
+    //     { 
+    //       text: 'OK',
+    //       onPress: () => navigation.replace('Home')
+    //     }
+    //   ])
+    // }
+    // return Alert.alert('error', 'email atau password tidak sesuai')
+    navigation.navigate('Tabs', { screen: 'Home' })
   }
 
   const registerHandler = () => {
@@ -36,10 +37,8 @@ const Login = ({ navigation }) => {
         <IconArrowLeft />
       </TouchableOpacity>
       <View style={styles.wrapperHeader}>
-        <View style={styles.text}>
-          <Text style={styles.title}>Sign in</Text>
-          <Text style={styles.message}>Welcome back</Text>
-        </View>
+        <Text style={styles.title}>Sign in</Text>
+        <Text style={styles.message}>Welcome back</Text>
       </View>
       <View style={styles.wrapperInput}>
         <TextField
@@ -82,9 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.white,
     paddingVertical: 30,
-    paddingHorizontal: 40
+    paddingHorizontal: 30
   },
-  text: {
+  wrapperHeader: {
     marginVertical: 40
   },
   title: {
