@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, TextField, PasswordField } from '../../components'
 import { COLOR, SIZE } from '../../utils'
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.white,
     paddingVertical: 30,
-    paddingHorizontal: 40
+    paddingHorizontal: 30
   },
   wrapperHeader: {
     marginVertical: 30
