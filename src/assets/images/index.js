@@ -1,4 +1,5 @@
 import Americano from './americano.png';
+import Beans from './beans.png';
 import Cappucino from './cappucino.png';
 import flatWhite from './flatWhite.png';
 import Home from './home.png';
@@ -11,6 +12,7 @@ import SplashBg from './splashbackground.png';
 
 export { 
   Americano,
+  Beans,
   Cappucino,
   flatWhite,
   Home,
