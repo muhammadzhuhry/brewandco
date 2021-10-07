@@ -5,6 +5,7 @@ import ItemNavigation from './ItemNavigation';
 import LoyaltyCard from './LoyaltyCard';
 import MenuItem from './MenuItem';
 import PasswordField from './PasswordField';
+import PointCard from './PointCard';
 import TextField from './TextField';
 import VerticalLine from './VerticalLine';
 
@@ -16,6 +17,7 @@ export {
   LoyaltyCard,
   MenuItem,
   PasswordField,
+  PointCard,
   TextField,
   VerticalLine
 };
