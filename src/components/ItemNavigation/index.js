@@ -33,7 +33,6 @@ export default ItemNavigation
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     justifyContent: 'center'
   },
   icon: (isFocused) => ({
