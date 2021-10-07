@@ -1,6 +1,8 @@
 import BottomNavigation from './BottomNavigation';
 import Button from './Button';
 import ButtonIcon from './ButtonIcon';
+import HistoryReward from './HistoryReward';
+import HorizontalLine from './HorizontalLine';
 import ItemNavigation from './ItemNavigation';
 import LoyaltyCard from './LoyaltyCard';
 import MenuItem from './MenuItem';
@@ -13,6 +15,8 @@ export {
   BottomNavigation,
   Button,
   ButtonIcon,
+  HistoryReward,
+  HorizontalLine,
   ItemNavigation,
   LoyaltyCard,
   MenuItem,
