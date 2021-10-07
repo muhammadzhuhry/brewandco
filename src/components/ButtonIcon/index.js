@@ -12,7 +12,6 @@ const ButtonIcon = ({ width, height, bRadius, color, iconName, onPress }) => {
       default: 
         return null
     }
-    return null;
   }
   
   return (
