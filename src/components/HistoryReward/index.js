@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 12,
     fontFamily: 'Poppins-Medium',
-    color: COLOR.midnightBlack
+    color: COLOR.midnightBlue
   },
   datetime: {
     fontSize: 10,
