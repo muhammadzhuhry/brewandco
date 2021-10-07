@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { HistoryReward, HorizontalLine, LoyaltyCard, PointCard } from '../../components';
+import { HistoryReward, LoyaltyCard, PointCard } from '../../components';
 import { COLOR } from '../../utils';
 
 const Reward = () => {
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
   historyTitle: {
     fontSize: 14,
     fontFamily: 'Poppins-Medium',
-    color: COLOR.midnightBlack
+    color: COLOR.midnightBlue
   }
 })
