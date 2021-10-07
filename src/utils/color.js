@@ -2,6 +2,7 @@ export const COLOR = {
   white: '#FFFFFF',
   whiteBlue: '#F7F8FB',
   whiteCream: '#FFFAF6',
+  whiteBrown: '#F4F5F7',
   whiteGray: '#D8D8D8',
   grayBlue: '#C1C7D0',
   grayBrown: '#AAAAAA',
