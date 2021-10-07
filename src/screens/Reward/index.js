@@ -1,8 +1,6 @@
-import hexToRgba from 'hex-to-rgba';
 import React from 'react';
-import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Beans } from '../../assets';
-import { LoyaltyCard, PointCard } from '../../components';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { HistoryReward, HorizontalLine, LoyaltyCard, PointCard } from '../../components';
 import { COLOR } from '../../utils';
 
 const Reward = () => {
@@ -13,6 +11,13 @@ const Reward = () => {
         <View style={styles.card}>
           <LoyaltyCard ordered={6} />
           <PointCard points={2750} />
+        </View>
+        <View>
+          <Text style={styles.historyTitle}>History Rewards</Text>
+          <HistoryReward name="Americano" date="24 June" time="12:30 PM" point={12} />
+          <HistoryReward name="Cappuccino" date="25 June" time="07:30 AM" point={17} />
+          <HistoryReward name="Mocha" date="26 June" time="08:30 AM" point={10} />
+          <HistoryReward name="Flat White" date="26 June" time="06:30 PM" point={13} />
         </View>
       </View>
     </ScrollView>
@@ -34,5 +39,10 @@ const styles = StyleSheet.create({
   },
   card: {
     marginVertical: 25
+  },
+  historyTitle: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Medium',
+    color: COLOR.midnightBlack
   }
 })
