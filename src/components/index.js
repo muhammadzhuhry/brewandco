@@ -1,6 +1,7 @@
 import BottomNavigation from './BottomNavigation';
 import Button from './Button';
 import ButtonIcon from './ButtonIcon';
+import HistoryOrder from './HistoryOrder';
 import HistoryReward from './HistoryReward';
 import HorizontalLine from './HorizontalLine';
 import ItemNavigation from './ItemNavigation';
@@ -15,6 +16,7 @@ export {
   BottomNavigation,
   Button,
   ButtonIcon,
+  HistoryOrder,
   HistoryReward,
   HorizontalLine,
   ItemNavigation,
