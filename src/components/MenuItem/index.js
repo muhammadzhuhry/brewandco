@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { Americano, Cappucino, flatWhite, Mocha } from '../../assets';
 import { COLOR } from '../../utils';
 
-const MenuItem = ({ name }) => {
+const MenuItem = ({ name, onPress }) => {
 
   const Images = () => {
     switch(name) {
@@ -22,7 +22,7 @@ const MenuItem = ({ name }) => {
 
   return (
     <View>
-      <TouchableOpacity style={styles.menuItem}>
+      <TouchableOpacity style={styles.menuItem} onPress={onPress}>
         <Images />
         <Text style={styles.menuName}>{name}</Text>
       </TouchableOpacity>
