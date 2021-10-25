@@ -4,7 +4,11 @@ import { IconCart } from '../../assets';
 import { LoyaltyCard, MenuItem } from '../../components';
 import { COLOR } from '../../utils';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const clickHandler = () => {
+    navigation.navigate('Detail')
+  }
+
   return (
     <ScrollView style={{ backgroundColor: COLOR.midnightBlue }}>
       <View style={styles.container}>
@@ -23,10 +27,10 @@ const Home = () => {
       <View style={styles.containerMenu}>
         <Text style={styles.menuTitle}>Choose your coffee</Text>
         <View style={styles.itemBox}>
-          <MenuItem name="Americano" />
-          <MenuItem name="Cappucino" />
-          <MenuItem name="Mocha" />
-          <MenuItem name="Flat White" />
+          <MenuItem name="Americano" onPress={clickHandler} />
+          <MenuItem name="Cappucino" onPress={clickHandler} />
+          <MenuItem name="Mocha" onPress={clickHandler} />
+          <MenuItem name="Flat White" onPress={clickHandler} />
         </View>
       </View>
       </View>
