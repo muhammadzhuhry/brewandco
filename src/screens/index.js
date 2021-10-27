@@ -1,3 +1,4 @@
+import Cart from './Cart';
 import Detail from './Detail';
 import Home from './Home';
 import Login from './Login';
@@ -7,4 +8,4 @@ import Reward from './Reward';
 import Register from './Register';
 import Splash from './Splash';
 
-export { Detail, Home, Login, Onboarding, Order, Reward, Register, Splash };
+export { Cart, Detail, Home, Login, Onboarding, Order, Reward, Register, Splash };
