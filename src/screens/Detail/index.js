@@ -1,10 +1,10 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Americano, Cappucino, IconArrowLeft, IconCart } from '../../assets'
+import { Americano, Cappucino, flatWhite, IconArrowLeft, IconCart, Mocha } from '../../assets'
 import { Button, HorizontalLine, OptionQty, OptionSelect, OptionSize } from '../../components'
 import { COLOR } from '../../utils'
 
-const Detail = () => {
+const Detail = ({ route, navigation }) => {
   const [value, setValue] = React.useState(1);
   const [hot, setHot] = React.useState(true);
   const [ice, setIce] = React.useState(!hot);
@@ -21,6 +21,7 @@ const Detail = () => {
       case 'ice':
         setHot(false);
         setIce(true);
+        break;
     }
   };
 
@@ -44,10 +45,27 @@ const Detail = () => {
     }
   }
 
+  const clickBackHandler = () => {
+    navigation.goBack()
+  }
+
+  const MenuImage = () => {
+    switch(route.params.menu.replace(' ', '')) {
+      case 'Americano':
+        return <Image style={styles.image} source={Americano} />
+      case 'Cappucino':
+        return <Image style={styles.image} source={Cappucino} />
+      case 'FlatWhite':
+        return <Image style={styles.image} source={flatWhite} />
+      case 'Mocha':
+        return <Image style={styles.image} source={Mocha} />
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={clickBackHandler}>
           <IconArrowLeft />
         </TouchableOpacity>
         <Text style={styles.title}>Details</Text>
@@ -56,10 +74,10 @@ const Detail = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.menu}>
-        <Image style={styles.image} source={Cappucino} />
+        <MenuImage />
       </View>
       <View style={styles.options}>
-        <OptionQty value={value} setValue={setValue} />
+        <OptionQty name={route.params.menu} value={value} setValue={setValue} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
         <OptionSelect hot={hot} ice={ice} onPress={selectHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
