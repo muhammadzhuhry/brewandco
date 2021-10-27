@@ -3,6 +3,7 @@ import IconArrowRight from './arrowRight.svg';
 import IconCart from './cart.svg';
 import IconCoffee from './coffee.svg';
 import IconCoffeeActive from './coffeeActive.svg';
+import IconDelete from './delete.svg';
 import IconLock from './lock.svg';
 import IconMessage from './message.svg';
 import IconPhone from './smartphone.svg';
@@ -14,6 +15,7 @@ export {
   IconCart,
   IconCoffee,
   IconCoffeeActive,
+  IconDelete,
   IconLock, 
   IconMessage,
   IconPhone,
