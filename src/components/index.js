@@ -11,6 +11,9 @@ import PasswordField from './PasswordField';
 import PointCard from './PointCard';
 import TextField from './TextField';
 import VerticalLine from './VerticalLine';
+import OptionSelect from './OptionSelect';
+import OptionSize from './OptionSize';
+import OptionQty from './OptionQty';
 
 export { 
   BottomNavigation,
@@ -25,5 +28,8 @@ export {
   PasswordField,
   PointCard,
   TextField,
-  VerticalLine
+  VerticalLine,
+  OptionSelect,
+  OptionSize,
+  OptionQty
 };
