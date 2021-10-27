@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import NumericInput from 'react-native-numeric-input'
 import { Americano, Cappucino, flatWhite, Hot, Ice, IconArrowLeft, IconCart, Large, Medium, Mocha, Small } from '../../assets'
-import { Button, HorizontalLine } from '../../components'
+import { Button, HorizontalLine, ItemSelect, OptionQty, OptionSelect, OptionSize } from '../../components'
 import { COLOR } from '../../utils'
 
 const Detail = () => {
@@ -60,60 +60,11 @@ const Detail = () => {
         <Image style={styles.image} source={Cappucino} />
       </View>
       <View style={styles.options}>
-        <View style={styles.item}>
-          <Text style={styles.itemText}>Cappuccino</Text>
-          <NumericInput
-            rounded
-            value={value}
-            minValue={0}
-            maxValue={10}
-            onChange={value => setValue(value)}
-            totalWidth={80}
-            totalHeight={35}
-            containerStyle={{ 
-              borderColor: COLOR.whiteBlue, 
-              borderRadius: 50
-            }}
-            inputStyle={{ 
-              color: COLOR.midnightBlack,
-              // paddingVertical: 4 
-            }}
-            iconStyle={{ 
-              color: COLOR.midnightBlack,
-              // paddingVertical: 4 
-            }}
-            borderColor={COLOR.white}
-            rightButtonBackgroundColor={COLOR.whiteBlue}
-            leftButtonBackgroundColor={COLOR.whiteBlue}
-          />
-        </View>
+        <OptionQty value={value} setValue={setValue} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
-        <View style={styles.item}>
-            <Text style={styles.itemText}>Select</Text>
-            <View style={styles.select}>
-              <TouchableOpacity onPress={() => selectHandler('hot')} style={{ marginRight: 25 }}>
-                <Image source={Hot} style={styles.itemSelect(hot)} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => selectHandler('ice')}>
-                <Image source={Ice} style={styles.itemSelect(ice)} />
-              </TouchableOpacity>
-            </View>
-        </View>
+        <OptionSelect hot={hot} ice={ice} onPress={selectHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
-        <View style={styles.item}>
-            <Text style={styles.itemText}>Size</Text>
-            <View style={styles.select}>
-              <TouchableOpacity onPress={() => sizeHandler('small')}>
-                <Image source={Small} style={styles.itemSize(small)} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => sizeHandler('medium')} style={{ marginHorizontal: 25 }}>
-                <Image source={Medium} style={styles.itemSize(medium)} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => sizeHandler('large')}>
-                <Image source={Large} style={styles.itemSize(large)} />
-              </TouchableOpacity>
-            </View>
-        </View>
+        <OptionSize small={small} medium={medium} large={large} onPress={sizeHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
       </View>
       <View style={styles.wrapperBottom}>
@@ -169,26 +120,6 @@ const styles = StyleSheet.create({
   options: {
     marginTop: 25
   },
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  itemText: {
-    fontSize: 14,
-    fontFamily: 'Poppins-Medium',
-    color: COLOR.midnightBlack,
-  },
-  select: {
-    flexDirection: 'row',
-    alignItems: 'flex-end'  
-  },
-  itemSelect: (isActive) => ({
-    tintColor: isActive ? COLOR.midnightBlue : COLOR.whiteGray
-  }),
-  itemSize: (isActive) => ({
-    tintColor: isActive ? COLOR.midnightBlue : COLOR.whiteGray
-  }),
   wrapperBottom: {
     flex: 1,
     justifyContent: 'flex-end'
