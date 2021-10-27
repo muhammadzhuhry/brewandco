@@ -1,8 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import NumericInput from 'react-native-numeric-input'
-import { Americano, Cappucino, flatWhite, Hot, Ice, IconArrowLeft, IconCart, Large, Medium, Mocha, Small } from '../../assets'
-import { Button, HorizontalLine, ItemSelect, OptionQty, OptionSelect, OptionSize } from '../../components'
+import { Americano, Cappucino, IconArrowLeft, IconCart } from '../../assets'
+import { Button, HorizontalLine, OptionQty, OptionSelect, OptionSize } from '../../components'
 import { COLOR } from '../../utils'
 
 const Detail = () => {
