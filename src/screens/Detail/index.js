@@ -1,12 +1,49 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import NumericInput from 'react-native-numeric-input'
-import { Americano, Cappucino, flatWhite, IconArrowLeft, IconCart, Mocha } from '../../assets'
-import { HorizontalLine } from '../../components'
+import { Americano, Cappucino, flatWhite, Hot, Ice, IconArrowLeft, IconCart, Large, Medium, Mocha, Small } from '../../assets'
+import { Button, HorizontalLine } from '../../components'
 import { COLOR } from '../../utils'
 
 const Detail = () => {
-  const [value, setValue] = React.useState(1)
+  const [value, setValue] = React.useState(1);
+  const [hot, setHot] = React.useState(true);
+  const [ice, setIce] = React.useState(!hot);
+  const [small, setSmall] = React.useState(true);
+  const [medium, setMedium] = React.useState(false);
+  const [large, setLarge] = React.useState(false);
+
+  const selectHandler = (state) => {
+    switch(state) {
+      case 'hot':
+        setHot(true);
+        setIce(false);
+        break;
+      case 'ice':
+        setHot(false);
+        setIce(true);
+    }
+  };
+
+  const sizeHandler = (state) => {
+    switch(state) {
+      case 'small':
+        setSmall(true);
+        setMedium(false);
+        setLarge(false);
+        break;
+      case 'medium':
+        setSmall(false);
+        setMedium(true);
+        setLarge(false);
+        break;
+      case 'large':
+        setSmall(false);
+        setMedium(false);
+        setLarge(true);
+        break;
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -24,7 +61,7 @@ const Detail = () => {
       </View>
       <View style={styles.options}>
         <View style={styles.item}>
-          <Text>Cappuccino</Text>
+          <Text style={styles.itemText}>Cappuccino</Text>
           <NumericInput
             rounded
             value={value}
@@ -52,7 +89,46 @@ const Detail = () => {
         </View>
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
         <View style={styles.item}>
-            <Text>Select</Text>
+            <Text style={styles.itemText}>Select</Text>
+            <View style={styles.select}>
+              <TouchableOpacity onPress={() => selectHandler('hot')} style={{ marginRight: 25 }}>
+                <Image source={Hot} style={styles.itemSelect(hot)} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => selectHandler('ice')}>
+                <Image source={Ice} style={styles.itemSelect(ice)} />
+              </TouchableOpacity>
+            </View>
+        </View>
+        <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
+        <View style={styles.item}>
+            <Text style={styles.itemText}>Size</Text>
+            <View style={styles.select}>
+              <TouchableOpacity onPress={() => sizeHandler('small')}>
+                <Image source={Small} style={styles.itemSize(small)} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => sizeHandler('medium')} style={{ marginHorizontal: 25 }}>
+                <Image source={Medium} style={styles.itemSize(medium)} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => sizeHandler('large')}>
+                <Image source={Large} style={styles.itemSize(large)} />
+              </TouchableOpacity>
+            </View>
+        </View>
+        <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
+      </View>
+      <View style={styles.wrapperBottom}>
+        <View style={styles.total}>
+          <Text style={styles.title}>Total Amount</Text>
+          <Text style={styles.title}>$3.00</Text>
+        </View>
+        <View>
+          <Button
+            color={COLOR.midnightBlue} 
+            bRadius={100} 
+            pVertical={12} 
+            mTop={20} 
+            text="Add To Cart"
+          />
         </View>
       </View>
     </View>
@@ -96,6 +172,29 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  itemText: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Medium',
+    color: COLOR.midnightBlack,
+  },
+  select: {
+    flexDirection: 'row',
+    alignItems: 'flex-end'  
+  },
+  itemSelect: (isActive) => ({
+    tintColor: isActive ? COLOR.midnightBlue : COLOR.whiteGray
+  }),
+  itemSize: (isActive) => ({
+    tintColor: isActive ? COLOR.midnightBlue : COLOR.whiteGray
+  }),
+  wrapperBottom: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
+  total: {
+    flexDirection: 'row',
     justifyContent: 'space-between'
   }
 })
