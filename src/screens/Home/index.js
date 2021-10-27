@@ -5,8 +5,8 @@ import { LoyaltyCard, MenuItem } from '../../components';
 import { COLOR } from '../../utils';
 
 const Home = ({ navigation }) => {
-  const clickHandler = () => {
-    navigation.navigate('Detail')
+  const clickHandler = (menu) => {
+    navigation.navigate('Detail', { menu })
   }
 
   return (
@@ -27,10 +27,10 @@ const Home = ({ navigation }) => {
       <View style={styles.containerMenu}>
         <Text style={styles.menuTitle}>Choose your coffee</Text>
         <View style={styles.itemBox}>
-          <MenuItem name="Americano" onPress={clickHandler} />
-          <MenuItem name="Cappucino" onPress={clickHandler} />
-          <MenuItem name="Mocha" onPress={clickHandler} />
-          <MenuItem name="Flat White" onPress={clickHandler} />
+          <MenuItem name="Americano" onPress={() => clickHandler('Americano')} />
+          <MenuItem name="Cappucino" onPress={() => clickHandler('Cappucino')} />
+          <MenuItem name="Mocha" onPress={() => clickHandler('Mocha')} />
+          <MenuItem name="Flat White" onPress={() => clickHandler('Flat White')} />
         </View>
       </View>
       </View>
