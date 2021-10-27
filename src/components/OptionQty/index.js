@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from 'react-native'
 import NumericInput from 'react-native-numeric-input'
 import { COLOR } from '../../utils'
 
-const OptionQty = ({ value, setValue }) => {
+const OptionQty = ({ name, value, setValue }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Cappuccino</Text>
+      <Text style={styles.text}>{name}</Text>
       <NumericInput
         rounded
         minValue={0}
