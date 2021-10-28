@@ -4,6 +4,7 @@ import ButtonIcon from './ButtonIcon';
 import HistoryOrder from './HistoryOrder';
 import HistoryReward from './HistoryReward';
 import HorizontalLine from './HorizontalLine';
+import ItemCart from './ItemCart';
 import ItemNavigation from './ItemNavigation';
 import LoyaltyCard from './LoyaltyCard';
 import MenuItem from './MenuItem';
@@ -22,6 +23,7 @@ export {
   HistoryOrder,
   HistoryReward,
   HorizontalLine,
+  ItemCart,
   ItemNavigation,
   LoyaltyCard,
   MenuItem,
