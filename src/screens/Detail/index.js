@@ -7,7 +7,7 @@ import { COLOR } from '../../utils'
 const Detail = ({ route, navigation }) => {
   const [value, setValue] = React.useState(1);
   const [hot, setHot] = React.useState(true);
-  const [ice, setIce] = React.useState(!hot);
+  const [iced, setIced] = React.useState(!hot);
   const [small, setSmall] = React.useState(true);
   const [medium, setMedium] = React.useState(false);
   const [large, setLarge] = React.useState(false);
@@ -16,11 +16,11 @@ const Detail = ({ route, navigation }) => {
     switch(state) {
       case 'hot':
         setHot(true);
-        setIce(false);
+        setIced(false);
         break;
-      case 'ice':
+      case 'iced':
         setHot(false);
-        setIce(true);
+        setIced(true);
         break;
     }
   };
@@ -83,7 +83,7 @@ const Detail = ({ route, navigation }) => {
       <View style={styles.options}>
         <OptionQty name={route.params.menu} value={value} setValue={setValue} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
-        <OptionSelect hot={hot} ice={ice} onPress={selectHandler} />
+        <OptionSelect hot={hot} iced={iced} onPress={selectHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
         <OptionSize small={small} medium={medium} large={large} onPress={sizeHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
