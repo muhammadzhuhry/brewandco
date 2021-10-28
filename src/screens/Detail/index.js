@@ -49,6 +49,10 @@ const Detail = ({ route, navigation }) => {
     navigation.goBack()
   }
 
+  const cartHandler = () => {
+    navigation.navigate('Cart')
+  }
+
   const MenuImage = () => {
     switch(route.params.menu.replace(' ', '')) {
       case 'Americano':
@@ -69,7 +73,7 @@ const Detail = ({ route, navigation }) => {
           <IconArrowLeft />
         </TouchableOpacity>
         <Text style={styles.title}>Details</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={cartHandler}>
           <IconCart />
         </TouchableOpacity>
       </View>
