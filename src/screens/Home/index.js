@@ -5,8 +5,12 @@ import { LoyaltyCard, MenuItem } from '../../components';
 import { COLOR } from '../../utils';
 
 const Home = ({ navigation }) => {
-  const clickHandler = (menu) => {
+  const menuHandler = (menu) => {
     navigation.navigate('Detail', { menu })
+  }
+
+  const cartHandler = () => {
+    navigation.navigate('Cart')
   }
 
   return (
@@ -17,7 +21,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.greeting}>Good morning</Text>
             <Text style={styles.name}>Anderson</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={cartHandler}>
             <IconCart />
           </TouchableOpacity>
         </View>
@@ -27,10 +31,10 @@ const Home = ({ navigation }) => {
       <View style={styles.containerMenu}>
         <Text style={styles.menuTitle}>Choose your coffee</Text>
         <View style={styles.itemBox}>
-          <MenuItem name="Americano" onPress={() => clickHandler('Americano')} />
-          <MenuItem name="Cappucino" onPress={() => clickHandler('Cappucino')} />
-          <MenuItem name="Mocha" onPress={() => clickHandler('Mocha')} />
-          <MenuItem name="Flat White" onPress={() => clickHandler('Flat White')} />
+          <MenuItem name="Americano" onPress={() => menuHandler('Americano')} />
+          <MenuItem name="Cappucino" onPress={() => menuHandler('Cappucino')} />
+          <MenuItem name="Mocha" onPress={() => menuHandler('Mocha')} />
+          <MenuItem name="Flat White" onPress={() => menuHandler('Flat White')} />
         </View>
       </View>
       </View>
