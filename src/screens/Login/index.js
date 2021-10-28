@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import firestore from '@react-native-firebase/firestore';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, TextField, PasswordField } from '../../components'
@@ -7,24 +8,40 @@ import { COLOR, SIZE } from '../../utils'
 const Login = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [users, setUsers] = React.useState([]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [])
 
   const clickBackHandler = () => {
     navigation.goBack()
   }
 
-  const emailFix = 'demo@gmail.com';
-  const passwordFix = 'd3mo@@@'
+  const fetchUsers = async () => {
+    const data = await firestore().collection('users').get();
+    data.docs.forEach(item => {
+      setUsers([...users,item.data()])
+    })
+  }
+
   const loginHandler = () => {
-    // if (email === emailFix && password === passwordFix) {
-    //   return Alert.alert('success', 'silahkan tunggu', [
-    //     { 
-    //       text: 'OK',
-    //       onPress: () => navigation.replace('Home')
-    //     }
-    //   ])
-    // }
-    // return Alert.alert('error', 'email atau password tidak sesuai')
-    navigation.navigate('Tabs', { screen: 'Home' })
+    let findEmail = users.find(data => data.email === email);
+    if (!findEmail) {
+      return Alert.alert('error', 'email tidak terdaftar')
+    }
+
+    let findPassword = users.find(data => data.password === password);
+    if (!findPassword) {
+      return Alert.alert('error', 'password salah')
+    }
+
+    return Alert.alert('success', 'silahkan tunggu', [
+      {
+        text: 'OK',
+        onPress: () => navigation.replace('Tabs', { screen: 'Home' })
+      }
+    ])
   }
 
   const registerHandler = () => {
