@@ -9,6 +9,10 @@ const Cart = ({ navigation }) => {
     navigation.goBack()
   }
 
+  const orderHandler = () => {
+    navigation.navigate('OrderSuccess')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
@@ -34,6 +38,7 @@ const Cart = ({ navigation }) => {
             bRadius={100}
             pVertical={12}
             text="Checkout"
+            onPress={orderHandler}
           />
           </View>
         </View>
