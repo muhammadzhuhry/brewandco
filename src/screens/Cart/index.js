@@ -10,7 +10,7 @@ const Cart = ({ navigation }) => {
   }
 
   const orderHandler = () => {
-    navigation.navigate('OrderSuccess')
+    navigation.replace('OrderSuccess')
   }
 
   return (
