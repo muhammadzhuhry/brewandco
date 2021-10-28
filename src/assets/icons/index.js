@@ -6,6 +6,7 @@ import IconCoffeeActive from './coffeeActive.svg';
 import IconDelete from './delete.svg';
 import IconLock from './lock.svg';
 import IconMessage from './message.svg';
+import IconOrderSuccess from './orderSuccess.svg';
 import IconPhone from './smartphone.svg';
 import IconShow from './show.svg';
 
@@ -18,6 +19,7 @@ export {
   IconDelete,
   IconLock, 
   IconMessage,
+  IconOrderSuccess,
   IconPhone,
   IconShow
 };
