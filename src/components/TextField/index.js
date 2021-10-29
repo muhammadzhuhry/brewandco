@@ -1,12 +1,14 @@
 import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import VerticalLine from '../VerticalLine'
-import { IconMessage, IconPhone } from '../../assets'
+import { IconMessage, IconPhone, IconUser } from '../../assets'
 import { COLOR } from '../../utils'
 
 const TextField = ({ iconName, placeholder, value, onChangeText }) => {
   const Icon = () => {
     switch (iconName) {
+      case 'user':
+        return <IconUser />
       case 'message':
         return <IconMessage />
       case 'phone':
