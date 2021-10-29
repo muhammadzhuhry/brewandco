@@ -6,7 +6,7 @@ import { COLOR, SIZE } from '../../utils'
 
 const Onboarding = ({ navigation }) => {
   const handleClick = () => {
-    navigation.navigate('Login')
+    navigation.replace('Login')
   }
 
   return (
