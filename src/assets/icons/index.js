@@ -14,6 +14,7 @@ import IconOrderSuccess from './orderSuccess.svg';
 import IconPhone from './smartphone.svg';
 import IconShow from './show.svg';
 import IconSmall from './small.svg';
+import IconUser from './user.svg';
 
 export { 
   IconArrowLeft, 
@@ -31,5 +32,6 @@ export {
   IconOrderSuccess,
   IconPhone,
   IconShow,
-  IconSmall
+  IconSmall,
+  IconUser
 };
