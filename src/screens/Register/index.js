@@ -1,23 +1,42 @@
 import React from 'react'
+import firestore from '@react-native-firebase/firestore';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, TextField, PasswordField } from '../../components'
 import { COLOR, SIZE } from '../../utils'
 
 const Register = ({ navigation }) => {
+  const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const ref = firestore().collection('users');
 
   const clickBackHandler = () => {
     navigation.goBack()
   }
 
+  const insertUser = async () => {
+    console.log(name, email, phone, password)
+    await ref.add({
+      name,
+      email,
+      phone,
+      password
+    });
+  }
+
   const registerHandler = () => {
     if (email && phone && password) {
+      insertUser();
+      setName('');
+      setEmail('');
+      setPhone('');
+      setPassword('');
+
       return Alert.alert('success', 'silahkan tunggu', [
         { 
-          text: 'OK',
+          text: 'Login',
           onPress: () => navigation.replace('Login')
         }
       ])
@@ -39,6 +58,12 @@ const Register = ({ navigation }) => {
         <Text style={styles.message}>Create an account here</Text>
       </View>
       <View style={styles.wrapperInput}>
+        <TextField
+          iconName="user"
+          placeholder="Fullname"
+          value={name} 
+          onChangeText={name => setName(name)}
+        />
         <TextField
           iconName="message"
           placeholder="Email address"
@@ -67,11 +92,11 @@ const Register = ({ navigation }) => {
       />
       <Text style={styles.textTerms}>By signing up you agree with our Terms of Use</Text>
         <View style={styles.wrapperLogin}>
-        <Text style={styles.textLogin}>Already a member? </Text>
-        <TouchableOpacity onPress={loginHandler}>
-            <Text style={styles.login}>Sign in</Text>
-          </TouchableOpacity>
-      </View>
+          <Text style={styles.textLogin}>Already a member? </Text>
+          <TouchableOpacity onPress={loginHandler}>
+              <Text style={styles.login}>Sign in</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   )
 }
@@ -112,7 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    marginBottom: SIZE.height * 0.05,
+    // marginBottom: SIZE.height * 0.05,
   },
   textLogin: {
     fontSize: 14,
