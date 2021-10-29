@@ -8,21 +8,30 @@ import { COLOR, SIZE } from '../../utils'
 const Login = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [users, setUsers] = React.useState([]);
+  const [users, setUsers] = React.useState([{}]);
+  const ref = firestore().collection('users');
 
   useEffect(() => {
     fetchUsers();
   }, [])
 
   const clickBackHandler = () => {
-    navigation.goBack()
+    navigation.replace('Onboarding')
   }
 
   const fetchUsers = async () => {
-    const data = await firestore().collection('users').get();
-    data.docs.forEach(item => {
-      setUsers([...users,item.data()])
-    })
+    const query = await ref.get();
+    let list = [];
+    query.forEach(async item => {
+      const { email, name, phone , password} = item.data()
+      list.push({
+        email,
+        name,
+        phone,
+        password
+      })
+    });
+    setUsers(list);
   }
 
   const loginHandler = () => {
