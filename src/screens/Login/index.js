@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, TextField, PasswordField } from '../../components'
@@ -23,8 +24,9 @@ const Login = ({ navigation }) => {
     const query = await ref.get();
     let list = [];
     query.forEach(async item => {
-      const { email, name, phone , password} = item.data()
+      const { email, name, phone , password } = item.data()
       list.push({
+        id: item.id,
         email,
         name,
         phone,
@@ -34,7 +36,7 @@ const Login = ({ navigation }) => {
     setUsers(list);
   }
 
-  const loginHandler = () => {
+  const loginHandler = async () => {
     let findEmail = users.find(data => data.email === email);
     if (!findEmail) {
       return Alert.alert('error', 'email tidak terdaftar')
@@ -44,6 +46,8 @@ const Login = ({ navigation }) => {
     if (!findPassword) {
       return Alert.alert('error', 'password salah')
     }
+
+    await AsyncStorage.setItem('userdata', JSON.stringify(findEmail));
 
     return Alert.alert('success', 'silahkan tunggu', [
       {
