@@ -18,7 +18,11 @@ const Home = ({ navigation }) => {
 
   const getData = async () => {
     const getUserdata = await AsyncStorage.getItem('userdata')
-    setUser(JSON.parse(getUserdata));
+    if (getUserdata) {
+      setUser(JSON.parse(getUserdata));
+    } else {
+      setUser({ name: 'Name' })
+    }
   };
 
   const fetchMenus = async () => {
@@ -49,7 +53,7 @@ const Home = ({ navigation }) => {
         <View style={styles.wrapperHeader}>
           <View>
             <Text style={styles.greeting}>Good morning</Text>
-            <Text style={styles.name}>{user.name || 'Name' }</Text>
+            <Text style={styles.name}>{user.name}</Text>
           </View>
           <TouchableOpacity onPress={cartHandler}>
             <IconCart />
