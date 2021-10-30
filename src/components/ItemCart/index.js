@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { Americano, Cappucino, flatWhite, IconDelete, Mocha } from '../../assets'
 import { COLOR } from '../../utils'
 
-const ItemCart = ({ name, qty }) => {
+const ItemCart = ({ name, qty, select, size, price }) => {
   const ItemImage = () => {
     switch(name.replace(' ', '')) {
       case 'Americano':
@@ -23,8 +23,8 @@ const ItemCart = ({ name, qty }) => {
         <ItemImage />
         <View>
           <Text style={styles.text}>{name}</Text>
-          <Text style={styles.options}>hot | small</Text>
-          <Text style={styles.price}>$3.00</Text>
+          <Text style={styles.options}>{select} | {size}</Text>
+          <Text style={styles.price}>${price.toFixed(2)}</Text>
         </View>
         <Text style={styles.qty}>x {qty}</Text>
       </View>
