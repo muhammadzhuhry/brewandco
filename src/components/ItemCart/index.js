@@ -1,9 +1,9 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Americano, Cappucino, flatWhite, IconDelete, Mocha } from '../../assets'
 import { COLOR } from '../../utils'
 
-const ItemCart = ({ name, qty, select, size, price }) => {
+const ItemCart = ({ name, qty, select, size, price, onPress }) => {
   const ItemImage = () => {
     switch(name.replace(' ', '')) {
       case 'Americano':
@@ -28,9 +28,9 @@ const ItemCart = ({ name, qty, select, size, price }) => {
         </View>
         <Text style={styles.qty}>x {qty}</Text>
       </View>
-      <View style={styles.delete}>
+      <TouchableOpacity style={styles.delete} onPress={onPress}>
         <IconDelete />
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }
