@@ -7,7 +7,7 @@ import { COLOR } from '../../utils'
 
 const Cart = ({ navigation }) => {
   const [items, setItems] = useState([]);
-
+ 
   useEffect(() => {
     getData();
   }, [])
@@ -21,6 +21,7 @@ const Cart = ({ navigation }) => {
     setItems(JSON.parse(getUsercart));
   };
 
+  const sum = items.map(item => item.price).reduce((prev, curr) => prev + curr, 0);
 
   const orderHandler = () => {
     navigation.replace('OrderSuccess')
@@ -54,7 +55,7 @@ const Cart = ({ navigation }) => {
         <View style={styles.bottom}>
           <View style={{ flex: 1 }}>
             <Text style={styles.text}>Total Price</Text>
-            <Text style={styles.price}>$9.00</Text>
+            <Text style={styles.price}>${sum.toFixed(2)}</Text>
           </View>
           <View style={styles.button}>
           <Button
