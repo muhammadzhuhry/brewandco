@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,7 +20,7 @@ const Order = () => {
     const getUserdata = await AsyncStorage.getItem('userdata')
     userId = JSON.parse(getUserdata).id;
 
-    const query = await refOrders.where('userId', '==', userId).get();
+    const query = await refOrders.where('userId', '==', userId).limit(4).get();
     let list = [];
     query.forEach(async item => {
       const { name, price, orderAt } = item.data();
@@ -38,8 +39,9 @@ const Order = () => {
         <Text style={styles.title}>My Order</Text>
         {
           orders && orders.map((item, index) => {
+            // need to implement skeleton load for fixing datetime and price.toFixed(2)
             return (
-              <HistoryOrder key={index} name={item.name}  date="24 June" time="12:33 PM" status={1} price={item.price} />
+              <HistoryOrder key={index} name={item.name}  date={'24 June'} time="12:33 PM" status={1} price={item.price} />
             )
           })
         }
