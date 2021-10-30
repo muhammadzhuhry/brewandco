@@ -63,7 +63,6 @@ const Home = ({ navigation }) => {
         <View style={styles.itemBox}>
           {
             menus.map((item,index) => {
-              // console.log(index, item);
               return(
                 <MenuItem key={index} name={item.name} onPress={() => menuHandler(item)} />
               )
