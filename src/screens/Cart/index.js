@@ -1,4 +1,6 @@
+import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react'
+import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
@@ -7,6 +9,8 @@ import { calculateSum, COLOR } from '../../utils'
 
 const Cart = ({ navigation }) => {
   const [items, setItems] = useState([]);
+  const [userId, setUserId] = useState('');
+  const refOrders = firestore().collection('orders');
  
   useEffect(() => {
     getData();
@@ -17,7 +21,14 @@ const Cart = ({ navigation }) => {
 
   const getData = async () => {
     const getUsercart = await AsyncStorage.getItem('usercart')
-    setItems(JSON.parse(getUsercart));
+    if (getUsercart) {
+      setItems(JSON.parse(getUsercart));
+    } else {
+      setItems([])
+    }
+
+    const getUserdata = await AsyncStorage.getItem('userdata')
+    setUserId(JSON.parse(getUserdata).id)
   };
 
   const clickBackHandler = () => {
@@ -25,6 +36,10 @@ const Cart = ({ navigation }) => {
   }
 
   const orderHandler = () => {
+    items.map(data => {
+      insertOrder(data)
+    })
+    AsyncStorage.removeItem('usercart')
     navigation.replace('OrderSuccess')
   }
 
@@ -32,6 +47,18 @@ const Cart = ({ navigation }) => {
     items.splice(index, 1)
     await AsyncStorage.setItem('usercart', JSON.stringify(items))
     navigation.replace('Cart')
+  }
+
+  const insertOrder = async (payload) => {
+    await refOrders.add({
+      name: payload.name,
+      price: payload.price,
+      qty: payload.qty,
+      select: payload.select,
+      size: payload.size,
+      userId: userId,
+      orderAt: dateFormat(new Date(), 'isoDateTime')
+    });
   }
 
   return (
