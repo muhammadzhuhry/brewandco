@@ -17,7 +17,6 @@ const Register = ({ navigation }) => {
   }
 
   const insertUser = async () => {
-    console.log(name, email, phone, password)
     await ref.add({
       name,
       email,
