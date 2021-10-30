@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, ItemCart } from '../../components'
-import { COLOR } from '../../utils'
+import { calculateSum, COLOR } from '../../utils'
 
 const Cart = ({ navigation }) => {
   const [items, setItems] = useState([]);
@@ -21,7 +21,8 @@ const Cart = ({ navigation }) => {
     setItems(JSON.parse(getUsercart));
   };
 
-  const sum = items.map(item => item.price).reduce((prev, curr) => prev + curr, 0);
+  // const sum = items.map(item => item['price']).reduce((prev, curr) => prev + curr, 0);
+  const sum = calculateSum(items, 'price');
 
   const orderHandler = () => {
     navigation.replace('OrderSuccess')
