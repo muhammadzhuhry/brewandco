@@ -24,7 +24,8 @@ const HistoryOrder = ({ name, date, time, status, price }) => {
                 <Status />
               </Text>
             </View>
-            <Text style={styles.price}>${price.toFixed(2)}</Text>
+            {/* price.toFixed(2) still bug need to fix later */}
+            <Text style={styles.price}>${price}</Text>
           </View>
         </View>
       </View>
