@@ -1,4 +1,6 @@
-import React from 'react'
+import react from 'react'
+import React, { useEffect } from 'react'
+import firestore from '@react-native-firebase/firestore';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Americano, Cappucino, flatWhite, IconArrowLeft, IconCart, Mocha } from '../../assets'
 import { Button, HorizontalLine, OptionQty, OptionSelect, OptionSize } from '../../components'
@@ -7,7 +9,7 @@ import { COLOR } from '../../utils'
 const Detail = ({ route, navigation }) => {
   const [value, setValue] = React.useState(1);
   const [hot, setHot] = React.useState(true);
-  const [iced, setIced] = React.useState(!hot);
+  const [iced, setIced] = React.useState(false);
   const [small, setSmall] = React.useState(true);
   const [medium, setMedium] = React.useState(false);
   const [large, setLarge] = React.useState(false);
@@ -24,6 +26,9 @@ const Detail = ({ route, navigation }) => {
         break;
     }
   };
+
+  let price = parseInt(route.params.price);
+  price *= value;
 
   const sizeHandler = (state) => {
     switch(state) {
@@ -54,7 +59,7 @@ const Detail = ({ route, navigation }) => {
   }
 
   const MenuImage = () => {
-    switch(route.params.menu.replace(' ', '')) {
+    switch(route.params.name.replace(' ', '')) {
       case 'Americano':
         return <Image style={styles.image} source={Americano} />
       case 'Cappucino':
@@ -81,7 +86,7 @@ const Detail = ({ route, navigation }) => {
         <MenuImage />
       </View>
       <View style={styles.options}>
-        <OptionQty name={route.params.menu} value={value} setValue={setValue} />
+        <OptionQty name={route.params.name} value={value} setValue={setValue} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
         <OptionSelect hot={hot} iced={iced} onPress={selectHandler} />
         <HorizontalLine height={2} color={COLOR.whiteBrown} mVertical={15} />
@@ -91,7 +96,7 @@ const Detail = ({ route, navigation }) => {
       <View style={styles.wrapperBottom}>
         <View style={styles.total}>
           <Text style={styles.title}>Total Amount</Text>
-          <Text style={styles.title}>$3.00</Text>
+          <Text style={styles.title}>${price.toFixed(2)}</Text>
         </View>
         <View>
           <Button
