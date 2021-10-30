@@ -7,8 +7,8 @@ import { LoyaltyCard, MenuItem } from '../../components';
 import { COLOR } from '../../utils';
 
 const Home = ({ navigation }) => {
-  const [user, setUser] = React.useState({});
-  const [menus, setMenus] = React.useState([{}]);
+  const [user, setUser] = useState({});
+  const [menus, setMenus] = useState([{}]);
   const refMenus = firestore().collection('menus');
   
   useEffect(() => {
