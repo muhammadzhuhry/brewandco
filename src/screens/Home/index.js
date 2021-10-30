@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { IconCart } from '../../assets';
 import { LoyaltyCard, MenuItem } from '../../components';
 import { COLOR } from '../../utils';
 
 const Home = ({ navigation }) => {
-  const menuHandler = (menu) => {
-    navigation.navigate('Detail', { menu })
+  const [user, setUser] = React.useState({});
+  const [menus, setMenus] = React.useState([{}]);
+  const refMenus = firestore().collection('menus');
+  
+  useEffect(() => {
+    getData();
+    fetchMenus();
+  }, [])
+
+  const getData = async () => {
+    const getUserdata = await AsyncStorage.getItem('userdata')
+    setUser(JSON.parse(getUserdata));
+  };
+
+  const fetchMenus = async () => {
+    const query = await refMenus.get();
+    let list = [];
+    query.forEach(async item => {
+      const { name, price } = item.data()
+      list.push({
+        id: item.id,
+        name,
+        price
+      })
+    });
+    await setMenus(list);
+  }
+
+  const menuHandler = (item) => {
+    navigation.navigate('Detail', item)
   }
 
   const cartHandler = () => {
@@ -19,7 +49,7 @@ const Home = ({ navigation }) => {
         <View style={styles.wrapperHeader}>
           <View>
             <Text style={styles.greeting}>Good morning</Text>
-            <Text style={styles.name}>Anderson</Text>
+            <Text style={styles.name}>{user.name || 'Name' }</Text>
           </View>
           <TouchableOpacity onPress={cartHandler}>
             <IconCart />
@@ -31,10 +61,14 @@ const Home = ({ navigation }) => {
       <View style={styles.containerMenu}>
         <Text style={styles.menuTitle}>Choose your coffee</Text>
         <View style={styles.itemBox}>
-          <MenuItem name="Americano" onPress={() => menuHandler('Americano')} />
-          <MenuItem name="Cappucino" onPress={() => menuHandler('Cappucino')} />
-          <MenuItem name="Mocha" onPress={() => menuHandler('Mocha')} />
-          <MenuItem name="Flat White" onPress={() => menuHandler('Flat White')} />
+          {
+            menus.map((item,index) => {
+              // console.log(index, item);
+              return(
+                <MenuItem key={index} name={item.name} onPress={() => menuHandler(item)} />
+              )
+            })
+          }
         </View>
       </View>
       </View>
