@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -7,9 +7,9 @@ import { Button, TextField, PasswordField } from '../../components'
 import { COLOR, SIZE } from '../../utils'
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [users, setUsers] = React.useState([{}]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([{}]);
   const ref = firestore().collection('users');
 
   useEffect(() => {
