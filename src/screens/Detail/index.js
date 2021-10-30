@@ -1,18 +1,32 @@
-import react from 'react'
-import React, { useEffect } from 'react'
-import firestore from '@react-native-firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Americano, Cappucino, flatWhite, IconArrowLeft, IconCart, Mocha } from '../../assets'
 import { Button, HorizontalLine, OptionQty, OptionSelect, OptionSize } from '../../components'
 import { COLOR } from '../../utils'
 
 const Detail = ({ route, navigation }) => {
-  const [value, setValue] = React.useState(1);
-  const [hot, setHot] = React.useState(true);
-  const [iced, setIced] = React.useState(false);
-  const [small, setSmall] = React.useState(true);
-  const [medium, setMedium] = React.useState(false);
-  const [large, setLarge] = React.useState(false);
+  const [value, setValue] = useState(1);
+  const [hot, setHot] = useState(true);
+  const [iced, setIced] = useState(false);
+  const [small, setSmall] = useState(true);
+  const [medium, setMedium] = useState(false);
+  const [large, setLarge] = useState(false);
+
+  let menu = {
+    name: route.params.name,
+    qty: value,
+    price: 0,
+    select: '',
+    size: ''
+  };
+
+  let price = parseInt(route.params.price);
+  price *= value;
+
+  menu.price = price;
+  menu.select = hot ? 'hot' : iced ? 'iced' : '';
+  menu.size = small ? 'small' : medium ? 'medium' : large ? 'large' : '';
 
   const selectHandler = (state) => {
     switch(state) {
@@ -26,9 +40,6 @@ const Detail = ({ route, navigation }) => {
         break;
     }
   };
-
-  let price = parseInt(route.params.price);
-  price *= value;
 
   const sizeHandler = (state) => {
     switch(state) {
@@ -56,6 +67,18 @@ const Detail = ({ route, navigation }) => {
 
   const cartHandler = () => {
     navigation.navigate('Cart')
+  }
+
+  const addToCartHandler = async () => {
+    const getUsercart = await AsyncStorage.getItem('usercart');
+    if (getUsercart == null) {
+      await AsyncStorage.setItem('usercart', JSON.stringify([menu]));
+    } else {
+      let newCart = JSON.parse(getUsercart)
+      newCart.push(menu)
+      await AsyncStorage.setItem('usercart', JSON.stringify(newCart))
+    }
+    navigation.replace('Cart');
   }
 
   const MenuImage = () => {
@@ -103,7 +126,8 @@ const Detail = ({ route, navigation }) => {
             color={COLOR.midnightBlue} 
             bRadius={100} 
             pVertical={12} 
-            mTop={20} 
+            mTop={20}
+            onPress={addToCartHandler}
             text="Add To Cart"
           />
         </View>
