@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, ItemCart } from '../../components'
 import { calculateSum, COLOR } from '../../utils'
@@ -12,20 +12,26 @@ const Cart = ({ navigation }) => {
     getData();
   }, [])
 
-  const clickBackHandler = () => {
-    navigation.goBack()
-  }
+  // const sum = items.map(item => item['price']).reduce((prev, curr) => prev + curr, 0);
+  const sum = calculateSum(items, 'price');
 
   const getData = async () => {
     const getUsercart = await AsyncStorage.getItem('usercart')
     setItems(JSON.parse(getUsercart));
   };
 
-  // const sum = items.map(item => item['price']).reduce((prev, curr) => prev + curr, 0);
-  const sum = calculateSum(items, 'price');
+  const clickBackHandler = () => {
+    navigation.goBack()
+  }
 
   const orderHandler = () => {
     navigation.replace('OrderSuccess')
+  }
+
+  const deleteHandler = async (index) => {
+    items.splice(index, 1)
+    await AsyncStorage.setItem('usercart', JSON.stringify(items))
+    navigation.replace('Cart')
   }
 
   return (
@@ -47,6 +53,7 @@ const Cart = ({ navigation }) => {
                 select={data.select}
                 size={data.size}
                 price={data.price}
+                onPress={() => deleteHandler(index)}
               />
             )
           })
