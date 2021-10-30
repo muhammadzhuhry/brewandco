@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { IconArrowLeft } from '../../assets'
 import { Button, ItemCart } from '../../components'
 import { COLOR } from '../../utils'
 
 const Cart = ({ navigation }) => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, [])
+
   const clickBackHandler = () => {
     navigation.goBack()
   }
+
+  const getData = async () => {
+    const getUsercart = await AsyncStorage.getItem('usercart')
+    setItems(JSON.parse(getUsercart));
+  };
+
 
   const orderHandler = () => {
     navigation.replace('OrderSuccess')
@@ -22,9 +35,20 @@ const Cart = ({ navigation }) => {
         <Text style={styles.title}>My Cart</Text>
       </View>
       <View style={styles.item}>
-        <ItemCart name="Americano" qty={1} />
-        <ItemCart name="Cappucino" qty={1} />
-        <ItemCart name="Flat White" qty={1} />
+        {
+          items && items.map((data, index) => {
+            return (
+              <ItemCart 
+                key={index}
+                name={data.name}
+                qty={data.qty}
+                select={data.select}
+                size={data.size}
+                price={data.price}
+              />
+            )
+          })
+        }
       </View>
       <View style={styles.wrapperBottom}>
         <View style={styles.bottom}>
